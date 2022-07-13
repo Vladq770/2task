@@ -7,6 +7,8 @@ def decorator_with_time_sleep(call_count, start_sleep_time, factor, border_sleep
             print("Кол-во запусков =", call_count)
             print("Начало работы")
             t = start_sleep_time
+            if t > border_sleep_time:
+                t = border_sleep_time
             for i in range(call_count):
                 print("Запуск номер", i + 1, "Ожидание:", t, "секунд")
                 time.sleep(t)
@@ -19,7 +21,7 @@ def decorator_with_time_sleep(call_count, start_sleep_time, factor, border_sleep
     return decorator
 
 
-@decorator_with_time_sleep(5, 1, 3, 20)
+@decorator_with_time_sleep(5, 1, 3, 10)
 def test_function(*args, **kwargs):
     for i in args:
         print(i)
